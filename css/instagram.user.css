@@ -1,0 +1,174 @@
+/* ==UserStyle==
+@name         Nord — Instagram
+@namespace    nord-storehouse
+@version      0.1.3
+@description  Nord theme for instagram.com — forces dark. Best with Instagram's own theme set to dark (Settings → Appearance) or OS dark.
+@author       raven
+@homepageURL  https://github.com/<you>/nord
+@updateURL    https://raw.githubusercontent.com/<you>/nord/main/css/instagram.user.css
+@var color accent "Accent (frost)" #88C0D0
+@var color bg "Background (polar night)" #2E3440
+@var color fg "Foreground (snow storm)" #D8DEE9
+==/UserStyle== */
+
+/* ============================================================
+ * Nord — Instagram
+ *
+ * Instagram's own dark mode is driven by design tokens declared
+ * as CSS custom properties on :root (--bg, --fg, --primary-text,
+ * --stroke, …). Overriding those tokens is the whole game — the
+ * hashed x-* classes then resolve to Nord automatically.
+ *
+ * The @var knobs double as tokens: --bg / --fg ARE Instagram's
+ * --bg / --fg, so the knobs work without extra wiring.
+ * ============================================================ */
+@-moz-document domain("instagram.com") {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    /* ---------- Nord palette (inlined from _nord.css) ---------- */
+    --nord0: #2E3440;
+    --nord1: #3B4252;
+    --nord2: #434C5E;
+    --nord3: #4C566A;
+    --nord4: #D8DEE9;
+    --nord5: #E5E9F0;
+    --nord6: #ECEFF4;
+    --nord7: #8FBCBB;
+    --nord8: #88C0D0;
+    --nord9: #81A1C1;
+    --nord10: #5E81AC;
+    --nord11: #BF616A;
+    --nord12: #D08770;
+    --nord13: #EBCB8B;
+    --nord14: #A3BE8C;
+    --nord15: #B48EAD;
+
+    /* ---------- derived tones ---------- */
+    --nord-fg-muted: #7D8BA3;
+    --nord-fg-subtle: #65748C;
+    --nord-border: #434C5E;
+    --nord-border-muted: #3B4252;
+    --nord-canvas-inset: #232735;
+
+    /* ---------- Instagram design tokens ----------
+       --bg / --fg come from the @var knobs above (Instagram's
+       tokens are literally those properties), so they're not
+       re-declared here. */
+    color-scheme: dark;
+    --primary-text: var(--fg);
+    --secondary-text: var(--nord-fg-muted);
+    --tertiary-text: var(--nord-fg-subtle);
+    --faint-text: var(--nord3);
+    --stroke: var(--nord-border);
+    --severity-major: var(--nord11);
+    --severity-minor: var(--nord14);
+    --blue: var(--accent);
+    --accent-bg: var(--nord10);
+    --app-layer: var(--nord0);
+  }
+
+  /* ---------- --ig-* page-level tokens ----------
+     The page background and most surfaces are painted from
+     --ig-primary-background (RGB triples consumed via
+     rgb(var(--ig-…))). Override them at :root AND body with
+     !important so they beat Instagram's own :root/body
+     declarations. RGB: nord0=46,52,64 nord1=59,66,82
+     nord2=67,76,94 */
+  :root,
+  body {
+    --ig-primary-background: 46, 52, 64 !important;
+    --ig-secondary-background: 59, 66, 82 !important;
+    --ig-elevated-background: 46, 52, 64 !important;
+    --ig-highlight-background: 67, 76, 94 !important;
+    --ig-separator: 67, 76, 94 !important;
+  }
+
+  /* ============================================================
+   * Structural
+   * ============================================================ */
+  html,
+  body {
+    background-color: var(--bg, var(--nord0)) !important;
+    color: var(--fg, var(--nord4)) !important;
+  }
+
+  header {
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  a {
+    color: var(--primary-text);
+  }
+  a:hover {
+    color: var(--accent);
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: var(--nord1) !important;
+    border: 1px solid var(--nord-border) !important;
+    color: var(--fg) !important;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--nord-fg-muted) !important;
+  }
+
+  /* ---------- --ig-* inline tokens ----------
+     Some surfaces (Messenger chat tabs, panels) carry their own
+     design tokens as INLINE custom properties on a container, as
+     RGB triples consumed by rgb(var(--ig-…)). Inline declarations
+     beat :root values, so override them right where they sit.
+     nord0 → 46,52,64 · nord1 → 59,66,82 · nord2 → 67,76,94 */
+  [style*="--ig-primary-background"] {
+    --ig-primary-background: 46, 52, 64 !important;
+    --ig-secondary-background: 59, 66, 82 !important;
+    --ig-elevated-background: 46, 52, 64 !important;
+    --ig-highlight-background: 67, 76, 94 !important;
+    --ig-separator: 67, 76, 94 !important;
+    --chat-composer-background-color: var(--ig-primary-background) !important;
+    --comment-background: var(--ig-primary-background) !important;
+    --messenger-card-background: #3B4252 !important;
+    --mwp-message-row-background: rgb(var(--ig-primary-background)) !important;
+    --mwp-message-out-background: rgb(var(--ig-secondary-background)) !important;
+    --mwp-message-in-background: rgb(var(--ig-primary-background)) !important;
+    --ig-message-out-background: rgb(var(--ig-secondary-background)) !important;
+    --ig-message-in-background: rgb(var(--ig-primary-background)) !important;
+    --secondary-text: #7D8BA3 !important;
+  }
+
+  /* ---------- chat message bubbles ----------
+     Sent/received bubble spans wrap the message text
+     (span > div[dir="auto"]). Scope to the chat widget via its
+     data-pagelet and give both bubbles a subtle Nord elevation:
+     sent = nord1, received = transparent (row bg shows). */
+  [data-pagelet="IGDChatTabsRootContentOffMsys"] span:has(> div[dir="auto"]) {
+    background-color: var(--nord1) !important;
+    color: var(--fg) !important;
+    border-radius: 16px !important;
+  }
+
+  /* ---------- Instagram's primary blue (inline-styled buttons) ---------- */
+  [style*="background-color: rgb(0, 149, 246)"],
+  [style*="background-color: rgb(0,149,246)"],
+  [style*="background-color: #0095F6"],
+  [style*="background-color: #0095f6"],
+  [style*="background-color: #0a7df0"] {
+    background-color: var(--nord10) !important;
+    border-color: var(--nord10) !important;
+    color: var(--nord6) !important;
+  }
+
+  /* ---------- verified badge (inline blue fill) ---------- */
+  svg[fill="rgb(0, 149, 246)"],
+  svg[fill="rgb(0,149,246)"] {
+    fill: var(--nord8) !important;
+  }
+
+  ::selection {
+    background-color: rgba(136,192,208,0.35);
+  }
+}

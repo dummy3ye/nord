@@ -1,0 +1,44 @@
+/*!
+ * Nord palette — canonical source of truth
+ * https://www.nordtheme.com/
+ *
+ * Each site theme inlines these colors so it installs as a single
+ * standalone file. This file is the reference to copy from when
+ * writing a new theme.
+ */
+:root {
+  /* Polar Night */
+  --nord0: #2E3440;
+  --nord1: #3B4252;
+  --nord2: #434C5E;
+  --nord3: #4C566A;
+
+  /* Snow Storm */
+  --nord4: #D8DEE9;
+  --nord5: #E5E9F0;
+  --nord6: #ECEFF4;
+
+  /* Frost */
+  --nord7: #8FBCBB;
+  --nord8: #88C0D0;
+  --nord9: #81A1C1;
+  --nord10: #5E81AC;
+
+  /* Aurora */
+  --nord11: #BF616A;
+  --nord12: #D08770;
+  --nord13: #EBCB8B;
+  --nord14: #A3BE8C;
+  --nord15: #B48EAD;
+
+  /* Semantic aliases — convenience for site themes */
+  --nord-bg: var(--nord0);
+  --nord-bg-alt: var(--nord1);
+  --nord-fg: var(--nord4);
+  --nord-fg-muted: var(--nord3);
+  --nord-accent: var(--nord8);
+  --nord-border: var(--nord3);
+  --nord-success: var(--nord14);
+  --nord-warning: var(--nord13);
+  --nord-danger: var(--nord11);
+}

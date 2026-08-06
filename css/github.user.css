@@ -1,0 +1,868 @@
+/* ==UserStyle==
+@name         Nord — GitHub
+@namespace    nord-storehouse
+@version      0.2.8
+@description  Nord theme for github.com — forces dark. For best results also set GitHub's own theme to "Dark default" in Settings → Appearance.
+@author       raven
+@homepageURL  https://github.com/<you>/nord
+@updateURL    https://raw.githubusercontent.com/<you>/nord/main/css/github.user.css
+@var color accent "Accent (frost)" #88C0D0
+@var color bg "Background (polar night)" #2E3440
+@var color fg "Foreground (snow storm)" #D8DEE9
+==/UserStyle== */
+
+/* ============================================================
+ * Nord — GitHub
+ *
+ * GitHub's UI is styled entirely through Primer CSS variables.
+ * This maps the ones that matter onto the Nord palette (plus a
+ * few derived tones for places Nord's 16 colors don't cover:
+ * muted text, emphasis button fills, diff/calendar tints).
+ *
+ * The variable block targets every data-color-mode scope so the
+ * theme applies regardless of the appearance GitHub is set to.
+ * ============================================================ */
+@-moz-document domain("github.com") {
+  :root,
+  :root[data-color-mode="dark"],
+  :root[data-color-mode="light"],
+  :root[data-color-mode="dark dimmed"],
+  :root[data-color-mode="auto"] {
+    /* ---------- Nord palette (inlined from _nord.css) ---------- */
+    --nord0: #2E3440;
+    --nord1: #3B4252;
+    --nord2: #434C5E;
+    --nord3: #4C566A;
+    --nord4: #D8DEE9;
+    --nord5: #E5E9F0;
+    --nord6: #ECEFF4;
+    --nord7: #8FBCBB;
+    --nord8: #88C0D0;
+    --nord9: #81A1C1;
+    --nord10: #5E81AC;
+    --nord11: #BF616A;
+    --nord12: #D08770;
+    --nord13: #EBCB8B;
+    --nord14: #A3BE8C;
+    --nord15: #B48EAD;
+
+    /* ---------- GitHub-specific derived tones ---------- */
+    --nord-fg-muted: #7D8BA3;      /* muted text: lighten of nord3 */
+    --nord-fg-subtle: #65748C;     /* subtle text */
+    --nord-border-default: #434C5E;
+    --nord-border-muted: #3B4252;
+    --nord-border-strong: #4C566A;
+    --nord-canvas-inset: #232735;  /* one step darker than nord0 */
+    --nord-success-emp: #5F7E47;   /* darkened nord14 (btn bg + white text) */
+    --nord-warning-emp: #8F7430;   /* darkened nord13 */
+    --nord-danger-emp: #8E3F48;    /* darkened nord11 */
+    --nord-done-emp: #8A6A99;      /* darkened nord15 */
+    --nord-diff-added: rgba(163,190,140,0.15);
+    --nord-diff-added-strong: rgba(163,190,140,0.4);
+    --nord-diff-removed: rgba(191,97,106,0.15);
+    --nord-diff-removed-strong: rgba(191,97,106,0.4);
+
+    /* ---------- canvas & page ---------- */
+    --color-canvas-default: var(--bg);
+    --color-canvas-overlay: var(--nord1);
+    --color-canvas-inset: var(--nord-canvas-inset);
+    --color-canvas-subtle: var(--nord1);
+    --color-canvas-sticky: rgba(46,52,64,0.95);
+    --color-canvas-scrim: rgba(46,52,64,0.7);
+    --color-overlay-bg: var(--nord1);
+    --color-overlay-backdrop: rgba(46,52,64,0.5);
+
+    /* ---------- text ---------- */
+    --color-fg-default: var(--fg);
+    --color-fg-muted: var(--nord-fg-muted);
+    --color-fg-subtle: var(--nord-fg-subtle);
+    --color-fg-on-emphasis: var(--nord6);
+    --color-fg-on-inverse: var(--nord6);
+    --color-primer-fg-disabled: var(--nord3);
+
+    /* ---------- icons ---------- */
+    --color-icon-primary: var(--fg);
+    --color-icon-secondary: var(--nord-fg-muted);
+    --color-icon-tertiary: var(--nord-fg-subtle);
+    --color-icon-danger: var(--nord11);
+    --color-icon-success: var(--nord14);
+    --color-icon-info: var(--nord8);
+    --color-icon-warning: var(--nord13);
+
+    /* ---------- accent (links, active states) ---------- */
+    --color-accent-fg: var(--accent);
+    --color-accent-emphasis: var(--nord10);
+    --color-accent-muted: rgba(136,192,208,0.15);
+    --color-accent-subtle: rgba(136,192,208,0.1);
+    --color-accent-border: rgba(136,192,208,0.4);
+    --color-done-fg: var(--nord15);
+    --color-done-emphasis: var(--nord-done-emp);
+    --color-done-muted: rgba(180,142,173,0.15);
+    --color-done-subtle: rgba(180,142,173,0.1);
+    --color-done-border: rgba(180,142,173,0.4);
+    --color-sponsors-fg: var(--nord15);
+    --color-focus-outline: var(--nord10);
+    --color-primer-shadow-focus: 0 0 0 3px rgba(136,192,208,0.4);
+    --color-primer-shadow-inset: inset 0 1px 0 rgba(216,222,233,0.03);
+    --color-primer-shadow-highlight: 0 1px 0 rgba(216,222,233,0.04);
+    --color-primer-border-active: var(--accent);
+    --color-primer-border-contrast: rgba(216,222,233,0.2);
+
+    /* ---------- semantic (success / attention / danger) ---------- */
+    --color-success-fg: var(--nord14);
+    --color-success-emphasis: var(--nord-success-emp);
+    --color-success-muted: rgba(163,190,140,0.15);
+    --color-success-subtle: rgba(163,190,140,0.1);
+    --color-success-border: rgba(163,190,140,0.4);
+    --color-attention-fg: var(--nord13);
+    --color-attention-emphasis: var(--nord-warning-emp);
+    --color-attention-muted: rgba(235,203,139,0.15);
+    --color-attention-subtle: rgba(235,203,139,0.1);
+    --color-attention-border: rgba(235,203,139,0.4);
+    --color-danger-fg: var(--nord11);
+    --color-danger-emphasis: var(--nord-danger-emp);
+    --color-danger-muted: rgba(191,97,106,0.15);
+    --color-danger-subtle: rgba(191,97,106,0.1);
+    --color-danger-border: rgba(191,97,106,0.4);
+    --color-neutral-muted: rgba(216,222,233,0.15);
+    --color-neutral-subtle: rgba(216,222,233,0.08);
+
+    /* ---------- borders ---------- */
+    --color-border-default: var(--nord-border-default);
+    --color-border-muted: var(--nord-border-muted);
+    --color-border-subtle: rgba(216,222,233,0.12);
+    --color-border-strong: var(--nord-border-strong);
+    --color-avatar-border: rgba(216,222,233,0.12);
+    --color-scrollbar-thumb-bg: rgba(216,222,233,0.15);
+    --color-scrollbar-thumb-hover-bg: rgba(216,222,233,0.3);
+
+    /* ---------- header & search ---------- */
+    --color-header-bg: var(--nord1);
+    --color-header-text: rgba(216,222,233,0.7);
+    --color-header-logo: var(--nord4);
+    --color-header-search-bg: var(--bg);
+    --color-header-search-border: var(--nord2);
+
+    /* ---------- buttons ---------- */
+    --color-btn-bg: var(--nord1);
+    --color-btn-hover-bg: var(--nord2);
+    --color-btn-active-bg: #343C4C;
+    --color-btn-selected-bg: var(--nord2);
+    --color-btn-text: var(--fg);
+    --color-btn-border: rgba(216,222,233,0.12);
+    --color-btn-hover-border: var(--nord-fg-muted);
+    --color-btn-inset-bg: var(--bg);
+    --color-btn-focus-ring: rgba(136,192,208,0.3);
+    --color-btn-shadow: 0 0 transparent;
+    --color-btn-shadow-active: inset 0 0.15em 0.3em rgba(15,17,21,0.3);
+    --color-btn-primary-bg: var(--nord10);
+    --color-btn-primary-hover-bg: #6690B8;
+    --color-btn-primary-selected-bg: var(--nord10);
+    --color-btn-primary-text: var(--nord6);
+    --color-btn-primary-border: rgba(216,222,233,0.12);
+
+    /* ---------- tabs & nav ---------- */
+    --color-underlinenav-border: rgba(216,222,233,0);
+    --color-underlinenav-border-hover: var(--nord-fg-muted);
+    --color-underlinenav-border-active: var(--accent);
+    --color-underlinenav-text: var(--nord-fg-muted);
+    --color-underlinenav-text-hover: var(--fg);
+    --color-underlinenav-text-active: var(--fg);
+    --color-underlinenav-icon: var(--nord-fg-subtle);
+    --color-underlinenav-icon-hover: var(--fg);
+    --color-underlinenav-icon-active: var(--fg);
+    --color-segmented-control-bg: var(--nord1);
+    --color-segmented-control-button-bg: var(--nord2);
+    --color-segmented-control-button-selected-border: var(--accent);
+    --color-segmented-control-border: var(--nord2);
+    --color-action-list-item-inline-divider: rgba(216,222,233,0.05);
+    --color-action-list-item-default-hover-bg: rgba(216,222,233,0.08);
+    --color-action-list-item-default-active-bg: rgba(216,222,233,0.12);
+    --color-action-list-item-default-selected-bg: rgba(136,192,208,0.15);
+    --color-menu-bg-active: var(--nord1);
+    --color-menu-border-active: var(--nord12);
+
+    /* ---------- sidebar, reactions, search highlight ---------- */
+    --color-sidebar-bg: var(--nord1);
+    --color-sidebar-borders: var(--nord2);
+    --color-sidebar-heading: var(--fg);
+    --color-social-reaction-bg: var(--nord1);
+    --color-social-reaction-hover-bg: rgba(136,192,208,0.15);
+    --color-search-keyword-hl: rgba(235,203,139,0.3);
+    --color-selection-highlight-bg: rgba(235,203,139,0.35);
+
+    /* ---------- diffs (PRs) ---------- */
+    --color-diff-blob-del-line-bg: var(--nord-diff-removed);
+    --color-diff-blob-del-line-hover-bg: rgba(191,97,106,0.25);
+    --color-diff-blob-addition-line-bg: var(--nord-diff-added);
+    --color-diff-blob-addition-line-hover-bg: rgba(163,190,140,0.25);
+    --color-diff-blob-add-word-bg: var(--nord-diff-added-strong);
+    --color-diff-blob-del-word-bg: var(--nord-diff-removed-strong);
+    --color-diff-blob-add-text: var(--nord14);
+    --color-diff-blob-del-text: var(--nord11);
+    --color-diff-blob-add-num-text: var(--nord14);
+    --color-diff-blob-del-num-text: var(--nord11);
+    --color-diff-blob-add-num-hover-text: var(--fg);
+    --color-diff-blob-del-num-hover-text: var(--fg);
+    --color-diff-blob-hunk-bg: rgba(136,192,208,0.15);
+    --color-diff-blob-hunk-text: var(--nord9);
+    --color-diff-blob-hunk-num-bg: rgba(136,192,208,0.15);
+    --color-diff-blob-hunk-num-text: var(--nord8);
+    --color-diff-blob-empty-line-bg: var(--nord-canvas-inset);
+    --color-diff-blob-selected-line-highlight-mix-blend-mode: normal;
+    --color-diffstat-added-bg: var(--nord14);
+    --color-diffstat-deleted-bg: var(--nord11);
+    --color-diffstat-neutral-bg: var(--nord3);
+
+    /* ---------- contribution calendar ---------- */
+    --color-calendar-graph-day-bg: var(--nord1);
+    --color-calendar-graph-day-border: rgba(46,52,64,0.06);
+    --color-calendar-graph-day-L1-bg: rgba(163,190,140,0.25);
+    --color-calendar-graph-day-L2-bg: rgba(163,190,140,0.5);
+    --color-calendar-graph-day-L3-bg: rgba(163,190,140,0.75);
+    --color-calendar-graph-day-L4-bg: var(--nord14);
+
+    /* ---------- terminal (Actions output) ---------- */
+    --color-ansi-black: var(--nord1);
+    --color-ansi-black-bright: var(--nord3);
+    --color-ansi-white: var(--nord4);
+    --color-ansi-white-bright: var(--nord6);
+    --color-ansi-red: var(--nord11);
+    --color-ansi-red-bright: #D97C84;
+    --color-ansi-green: var(--nord14);
+    --color-ansi-green-bright: #BCD2A8;
+    --color-ansi-yellow: var(--nord13);
+    --color-ansi-yellow-bright: #F0DBA8;
+    --color-ansi-blue: var(--nord9);
+    --color-ansi-blue-bright: #A5BFD6;
+    --color-ansi-magenta: var(--nord15);
+    --color-ansi-magenta-bright: #C9A6C4;
+    --color-ansi-cyan: var(--nord7);
+    --color-ansi-cyan-bright: #AED4D3;
+
+    /* ---------- rendered markdown (prettylights) ---------- */
+    --color-prettylights-syntax-comment: var(--nord3);
+    --color-prettylights-syntax-constant: var(--nord8);
+    --color-prettylights-syntax-constant-other-reference-link: var(--nord8);
+    --color-prettylights-syntax-constant-other-character: var(--nord8);
+    --color-prettylights-syntax-entity: var(--nord15);
+    --color-prettylights-syntax-storage-modifier-import: var(--fg);
+    --color-prettylights-syntax-entity-tag: var(--nord7);
+    --color-prettylights-syntax-keyword: var(--nord11);
+    --color-prettylights-syntax-string: var(--nord14);
+    --color-prettylights-syntax-string-other-link: var(--nord14);
+    --color-prettylights-syntax-variable: var(--nord12);
+    --color-prettylights-syntax-brackethighlighter-unmatched: var(--nord11);
+    --color-prettylights-syntax-invalid-illegal-text: var(--nord6);
+    --color-prettylights-syntax-invalid-illegal-bg: #7E3E46;
+    --color-prettylights-syntax-carriage-return-text: var(--nord6);
+    --color-prettylights-syntax-carriage-return-bg: #7E3E46;
+    --color-prettylights-syntax-string-regexp: var(--nord14);
+    --color-prettylights-syntax-markup-list: var(--nord13);
+    --color-prettylights-syntax-markup-heading: var(--nord10);
+    --color-prettylights-syntax-markup-italic: var(--fg);
+    --color-prettylights-syntax-markup-bold: var(--fg);
+    --color-prettylights-syntax-markup-deleted-text: #E5B9BC;
+    --color-prettylights-syntax-markup-deleted-bg: var(--nord-diff-removed);
+    --color-prettylights-syntax-markup-inserted-text: #BFD3AE;
+    --color-prettylights-syntax-markup-inserted-bg: var(--nord-diff-added);
+    --color-prettylights-syntax-markup-changed-text: #E8C2A4;
+    --color-prettylights-syntax-markup-changed-bg: rgba(208,135,112,0.15);
+    --color-prettylights-syntax-markup-ignored-text: var(--fg);
+    --color-prettylights-syntax-markup-ignored-bg: var(--nord10);
+    --color-prettylights-syntax-meta-diff-range: var(--nord15);
+    --color-prettylights-syntax-brackethighlighter-angle: var(--nord3);
+    --color-prettylights-syntax-sublimelinter-gutter-mark: var(--nord3);
+
+    /* ---------- CodeMirror (edit mode) ---------- */
+    --color-codemirror-text: var(--fg);
+    --color-codemirror-bg: var(--bg);
+    --color-codemirror-gutters-bg: var(--nord1);
+    --color-codemirror-guttermarker-text: var(--bg);
+    --color-codemirror-guttermarker-subtle-text: var(--nord3);
+    --color-codemirror-linenumber-text: var(--nord3);
+    --color-codemirror-cursor: var(--accent);
+    --color-codemirror-selection-bg: rgba(136,192,208,0.3);
+    --color-codemirror-activeline-bg: rgba(216,222,233,0.05);
+    --color-codemirror-matchingbracket-text: var(--bg);
+    --color-codemirror-lines-bg: var(--bg);
+    --color-codemirror-syntax-comment: var(--nord3);
+    --color-codemirror-syntax-constant: var(--nord8);
+    --color-codemirror-syntax-entity: var(--nord15);
+    --color-codemirror-syntax-keyword: var(--nord11);
+    --color-codemirror-syntax-storage: var(--nord11);
+    --color-codemirror-syntax-string: var(--nord14);
+    --color-codemirror-syntax-support: var(--nord8);
+    --color-codemirror-syntax-variable: var(--nord12);
+
+    /* ---------- legacy color aliases (older components) ---------- */
+    --color-bg-primary: var(--bg);
+    --color-bg-secondary: var(--nord1);
+    --color-bg-tertiary: var(--nord2);
+    --color-bg-canvas: var(--bg);
+    --color-bg-canvas-inset: var(--nord-canvas-inset);
+    --color-bg-canvas-inverse: var(--nord1);
+    --color-bg-canvas-subtle: var(--nord1);
+    --color-bg-overlay: var(--nord1);
+    --color-bg-default: var(--bg);
+    --color-bg-subtle: var(--nord1);
+    --color-bg-emphasis: var(--nord2);
+    --color-bg-inset: var(--nord-canvas-inset);
+    --color-bg-inverse: var(--nord1);
+    --color-bg-accent: rgba(136,192,208,0.15);
+    --color-bg-info: rgba(136,192,208,0.1);
+    --color-bg-info-inverse: var(--nord10);
+    --color-bg-danger: rgba(191,97,106,0.1);
+    --color-bg-danger-inverse: var(--nord-danger-emp);
+    --color-bg-success: rgba(163,190,140,0.1);
+    --color-bg-success-inverse: var(--nord-success-emp);
+    --color-bg-warning: rgba(235,203,139,0.1);
+    --color-bg-warning-inverse: var(--nord-warning-emp);
+    --color-text-primary: var(--fg);
+    --color-text-secondary: var(--nord-fg-muted);
+    --color-text-tertiary: var(--nord-fg-subtle);
+    --color-text-link: var(--accent);
+    --color-text-inverse: var(--nord6);
+    --color-text-onEmphasis: var(--nord6);
+    --color-text-danger: var(--nord11);
+    --color-text-success: var(--nord14);
+    --color-text-warning: var(--nord13);
+    --color-text-info: var(--nord8);
+    --color-border-primary: var(--nord-border-default);
+    --color-border-secondary: var(--nord-border-muted);
+    --color-border-tertiary: var(--nord-border-default);
+    --color-border-inverse: var(--nord6);
+    --color-border-info: rgba(136,192,208,0.4);
+    --color-border-danger: rgba(191,97,106,0.4);
+    --color-border-success: rgba(163,190,140,0.4);
+    --color-border-warning: rgba(235,203,139,0.4);
+    --color-fg-default: var(--fg);
+    --color-fg-muted: var(--nord-fg-muted);
+    --color-fg-subtle: var(--nord-fg-subtle);
+    --color-fg-accent: var(--accent);
+    --color-fg-success: var(--nord14);
+    --color-fg-attention: var(--nord13);
+    --color-fg-danger: var(--nord11);
+    --color-fg-on-emphasis: var(--nord6);
+    --color-fg-on-inverse: var(--nord6);
+
+    /* ---------- Primer p-* namespace aliases (new React UI) ---------- */
+    --p-color-canvas-default: var(--bg);
+    --p-color-canvas-overlay: var(--nord1);
+    --p-color-canvas-inset: var(--nord-canvas-inset);
+    --p-color-canvas-subtle: var(--nord1);
+    --p-color-fg-default: var(--fg);
+    --p-color-fg-muted: var(--nord-fg-muted);
+    --p-color-fg-subtle: var(--nord-fg-subtle);
+    --p-color-accent-fg: var(--accent);
+    --p-color-accent-emphasis: var(--nord10);
+    --p-color-accent-muted: rgba(136,192,208,0.15);
+    --p-color-accent-subtle: rgba(136,192,208,0.1);
+    --p-color-border-default: var(--nord-border-default);
+    --p-color-border-muted: var(--nord-border-muted);
+    --p-color-border-strong: var(--nord-border-strong);
+    --p-color-success-fg: var(--nord14);
+    --p-color-success-emphasis: var(--nord-success-emp);
+    --p-color-attention-fg: var(--nord13);
+    --p-color-danger-fg: var(--nord11);
+    --p-color-danger-emphasis: var(--nord-danger-emp);
+    --p-color-neutral-muted: rgba(216,222,233,0.15);
+    --p-color-overlay-bg: var(--nord1);
+    --p-color-bg-default: var(--bg);
+    --p-color-bg-subtle: var(--nord1);
+    --p-color-bg-emphasis: var(--nord2);
+    --p-color-bg-inset: var(--nord-canvas-inset);
+  }
+
+  /* ============================================================
+   * Syntax highlighting — GitHub's .pl-* tokens (file viewer &
+   * diff views) mapped to Nord. Uses the palette from above.
+   * ============================================================ */
+  .highlight .pl-c,
+  .highlight .pl-cow,
+  .highlight .pl-cv,
+  .highlight .pl-coc,
+  .highlight .pl-sd,
+  .highlight .pl-sh,
+  .highlight .pl-mq {
+    color: var(--nord3);
+  }
+  .highlight .pl-k,
+  .highlight .pl-ko,
+  .highlight .pl-kos,
+  .highlight .pl-kw,
+  .highlight .pl-mdr,
+  .highlight .pl-mh,
+  .highlight .pl-mt,
+  .highlight .pl-mb,
+  .highlight .pl-mi {
+    color: var(--nord11);
+  }
+  .highlight .pl-s,
+  .highlight .pl-s1,
+  .highlight .pl-pds,
+  .highlight .pl-sr,
+  .highlight .pl-sre,
+  .highlight .pl-sb,
+  .highlight .pl-sv,
+  .highlight .pl-s3 {
+    color: var(--nord14);
+  }
+  .highlight .pl-en,
+  .highlight .pl-ec,
+  .highlight .pl-enc,
+  .highlight .pl-fs,
+  .highlight .pl-func {
+    color: var(--nord9);
+  }
+  .highlight .pl-c1,
+  .highlight .pl-cc,
+  .highlight .pl-ct,
+  .highlight .pl-sc,
+  .highlight .pl-mn,
+  .highlight .pl-mo,
+  .highlight .pl-cdr,
+  .highlight .pl-cinf {
+    color: var(--nord8);
+  }
+  .highlight .pl-v,
+  .highlight .pl-e,
+  .highlight .pl-pv,
+  .highlight .pl-vi,
+  .highlight .pl-sra {
+    color: var(--nord12);
+  }
+  .highlight .pl-ent,
+  .highlight .pl-el {
+    color: var(--nord7);
+  }
+  .highlight .pl-s2 {
+    color: var(--fg);
+  }
+  .highlight .pl-c2 {
+    color: var(--nord6);
+    background-color: var(--nord11);
+  }
+  .highlight .pl-err,
+  .highlight .pl-ii {
+    color: var(--nord11);
+    background-color: rgba(191,97,106,0.12);
+  }
+
+  /* ============================================================
+   * Structural fixes
+   * ============================================================ */
+  html,
+  body {
+    color-scheme: dark;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+  ::selection {
+    background-color: rgba(136,192,208,0.35);
+  }
+
+  /* ============================================================
+   * Direct overrides — defense in depth.
+   * The new React UI scopes some colors to component-local
+   * variables or hardcoded values that :root variables can't
+   * reach. These rules pin the specific visible elements.
+   * ============================================================ */
+
+  /* --- active tab underline --- */
+  .UnderlineNav-item[aria-current="page"],
+  .UnderlineNav-item.selected,
+  .UnderlineNav-item[aria-selected="true"],
+  [class*="UnderlineNav"] [aria-current="page"] {
+    color: var(--fg) !important;
+    border-bottom-color: transparent !important;
+    box-shadow: inset 0 -2px 0 0 var(--accent) !important;
+  }
+  .UnderlineNav-item:hover {
+    color: var(--fg) !important;
+    box-shadow: inset 0 -2px 0 0 var(--nord-fg-muted) !important;
+  }
+  .tabnav-tab.selected {
+    color: var(--fg) !important;
+    background-color: var(--nord1) !important;
+    border-color: var(--nord-border-default) var(--nord-border-default) transparent !important;
+  }
+
+  /* --- header icons & buttons --- */
+  .Header-button,
+  [class*="Header"] button:not([class*="primary"]),
+  [class*="header"] button:not([class*="primary"]) {
+    background-color: var(--nord1) !important;
+    border: 1px solid var(--nord-border-default) !important;
+    color: var(--fg) !important;
+  }
+  .Header-button:hover,
+  [class*="Header"] button:hover,
+  [class*="header"] button:hover {
+    background-color: var(--nord2) !important;
+  }
+  [class*="Header"] [class*="avatar"],
+  [class*="header"] [class*="avatar"] {
+    border: 1px solid var(--nord-border-default) !important;
+  }
+
+  /* --- search box & focus ring --- */
+  [class*="searchInput"],
+  [class*="search-input"],
+  [class*="SearchBar"],
+  [class*="search"] input[type="search"],
+  [class*="search"] input[type="text"] {
+    background-color: var(--nord1) !important;
+    border-color: var(--nord-border-default) !important;
+    color: var(--fg) !important;
+  }
+  [class*="searchInput"]:focus,
+  [class*="search-input"]:focus,
+  [class*="SearchBar"]:focus-within {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(136,192,208,0.3) !important;
+  }
+
+  /* --- contribution sidebar: selected year --- */
+  .js-year-link.selected,
+  [class*="yearLink"][class*="selected"],
+  [class*="yearLink"][aria-current="true"],
+  [class*="sidebar"] a[aria-current="true"] {
+    background-color: var(--accent) !important;
+    color: var(--bg) !important;
+  }
+  .js-year-link:hover,
+  [class*="yearLink"]:hover {
+    color: var(--fg) !important;
+  }
+
+  /* --- contribution heatmap --- */
+  [data-level="0"] {
+    fill: var(--nord1) !important;
+    background-color: var(--nord1) !important;
+  }
+  [data-level="1"] {
+    fill: rgba(163,190,140,0.25) !important;
+    background-color: rgba(163,190,140,0.25) !important;
+  }
+  [data-level="2"] {
+    fill: rgba(163,190,140,0.5) !important;
+    background-color: rgba(163,190,140,0.5) !important;
+  }
+  [data-level="3"] {
+    fill: rgba(163,190,140,0.75) !important;
+    background-color: rgba(163,190,140,0.75) !important;
+  }
+  [data-level="4"] {
+    fill: var(--nord14) !important;
+    background-color: var(--nord14) !important;
+  }
+
+  /* --- activity overview: radar, commit bars, legend ---
+     Redeclare the calendar vars locally so any child that reads
+     them (radar axes, bar fills) gets Nord even if it re-scopes
+     them. */
+  [class*="radar"],
+  [class*="Radar"],
+  [class*="activity"],
+  [class*="Activity"],
+  [class*="overview"],
+  [class*="Overview"] {
+    --color-calendar-graph-day-bg: var(--nord1);
+    --color-calendar-graph-day-L1-bg: rgba(163,190,140,0.25);
+    --color-calendar-graph-day-L2-bg: rgba(163,190,140,0.5);
+    --color-calendar-graph-day-L3-bg: rgba(163,190,140,0.75);
+    --color-calendar-graph-day-L4-bg: var(--nord14);
+    --color-success-fg: var(--nord14);
+    --color-success-emphasis: var(--nord-success-emp);
+  }
+  [class*="overview"] [class*="bar"],
+  [class*="Overview"] [class*="bar"],
+  [class*="activity"] [class*="bar"],
+  [class*="Activity"] [class*="bar"] {
+    background-color: var(--nord14) !important;
+  }
+  [class*="radar"] [role="img"] circle,
+  [class*="Radar"] [role="img"] circle {
+    fill: var(--accent) !important;
+    stroke: var(--accent) !important;
+  }
+  [class*="legend"] {
+    color: var(--nord-fg-muted) !important;
+  }
+
+  /* --- issue / PR state badges --- */
+  .State--open,
+  .StateLabel--open {
+    color: var(--nord14) !important;
+    background-color: rgba(163,190,140,0.15) !important;
+  }
+  .State--closed,
+  .StateLabel--closed {
+    color: var(--nord11) !important;
+    background-color: rgba(191,97,106,0.15) !important;
+  }
+  .State--merged,
+  .StateLabel--merged {
+    color: var(--nord15) !important;
+    background-color: rgba(180,142,173,0.15) !important;
+  }
+
+  /* --- cards & embedded boxes: blend with canvas --- */
+  [class*="card"],
+  [class*="Card"],
+  [class*="Box"] {
+    background-color: var(--nord0) !important;
+    border-color: var(--nord-border-default) !important;
+  }
+  [class*="annotate"] {
+    background-color: var(--nord0) !important;
+    border-color: var(--nord-border-muted) !important;
+  }
+
+  /* --- pinned repo cards (profile) ---
+     The visible card is the inner .Box; the <li> is a transparent
+     flex wrapper. Give the Box its own distinct card bg so it
+     reads as a card against the nord0 canvas. */
+  .js-pinned-item-list-item .Box,
+  .pinned-item-list-item .Box,
+  [class*="pinned-item"] .Box,
+  [data-testid*="pinned"] .Box {
+    background-color: var(--nord1) !important;
+    border: 1px solid var(--nord-border-default) !important;
+    border-radius: 6px !important;
+    box-shadow: inset 0 1px 0 rgba(216,222,233,0.03) !important;
+  }
+  .js-pinned-item-list-item .Box:hover,
+  .pinned-item-list-item .Box:hover,
+  [class*="pinned-item"] .Box:hover,
+  [data-testid*="pinned"] .Box:hover {
+    background-color: var(--nord2) !important;
+    border-color: var(--nord-border-strong) !important;
+  }
+
+  /* --- language dots ---
+     Colors are brand hexes applied inline, so they can't be mapped
+     per-language from CSS. Normalize them to a single Nord tone;
+     the language name text next to the dot still carries the info. */
+  .repo-language-color,
+  [class*="language-color"] {
+    background-color: var(--nord8) !important;
+    border: 1px solid var(--nord-border-muted) !important;
+  }
+
+  /* --- activity overview box & radar chart --- */
+  .activity-overview-box {
+    background-color: var(--bg) !important;
+    border-color: var(--nord-border-default) !important;
+  }
+  .subnav-item {
+    color: var(--nord-fg-muted) !important;
+  }
+  .subnav-item:hover {
+    color: var(--fg) !important;
+    background-color: var(--nord2) !important;
+  }
+  /* radar data polygon (fill/stroke are inline attributes) */
+  .js-highlight-blob {
+    fill: var(--nord14) !important;
+    stroke: var(--nord14) !important;
+  }
+  /* radar axis lines */
+  .activity-overview-axis {
+    stroke: var(--nord-border-muted) !important;
+  }
+  /* radar data points (inline white ellipses) */
+  .activity-overview-point {
+    fill: var(--accent) !important;
+    stroke: var(--accent) !important;
+  }
+  /* radar callouts */
+  .activity-overview-percentage {
+    fill: var(--nord14) !important;
+  }
+  .activity-overview-label {
+    fill: var(--nord-fg-muted) !important;
+  }
+
+  /* --- color utility classes (.color-*) ---
+     Components use these utilities directly; force them to Nord
+     regardless of which variable they reference. */
+  .color-bg-default { background-color: var(--bg) !important; }
+  .color-bg-subtle { background-color: var(--nord1) !important; }
+  .color-bg-emphasis { background-color: var(--nord2) !important; }
+  .color-bg-inset { background-color: var(--nord-canvas-inset) !important; }
+  .color-bg-inverse { background-color: var(--nord1) !important; }
+  .color-bg-accent { background-color: rgba(136,192,208,0.15) !important; }
+  .color-fg-default { color: var(--fg) !important; }
+  .color-fg-muted { color: var(--nord-fg-muted) !important; }
+  .color-fg-subtle { color: var(--nord-fg-subtle) !important; }
+  .color-fg-accent { color: var(--accent) !important; }
+  .color-fg-success { color: var(--nord14) !important; }
+  .color-fg-attention { color: var(--nord13) !important; }
+  .color-fg-danger { color: var(--nord11) !important; }
+  .color-fg-on-emphasis { color: var(--nord6) !important; }
+  .color-fg-done { color: var(--nord15) !important; }
+  .color-fg-sponsors { color: var(--nord15) !important; }
+  .color-fg-link { color: var(--accent) !important; }
+  .color-bg-done { background-color: rgba(180,142,173,0.15) !important; }
+  .color-bg-info { background-color: rgba(136,192,208,0.1) !important; }
+  .color-border-default { border-color: var(--nord-border-default) !important; }
+  .color-border-muted { border-color: var(--nord-border-muted) !important; }
+
+  /* --- forms & inputs (.form-control) --- */
+  .form-control,
+  input[type="search"] {
+    background-color: var(--nord-canvas-inset) !important;
+    border-color: var(--nord-border-default) !important;
+    color: var(--fg) !important;
+  }
+  .form-control:focus,
+  input[type="search"]:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(136,192,208,0.3) !important;
+  }
+  .form-control::placeholder,
+  input[type="search"]::placeholder {
+    color: var(--nord-fg-muted) !important;
+  }
+
+  /* ============================================================
+   * New global nav header (redesign)
+   * The old `.Header` classes are gone — the top bar now uses
+   * `GlobalNav` + React CSS-module classes. The stable fragments
+   * before the hash (prc-*, Search-module__*, etc.) are reliable
+   * to match on.
+   * ============================================================ */
+
+  /* header bar — nord1, one step above the canvas like GitHub's own */
+  [class*="GlobalNav"] {
+    background-color: var(--nord1) !important;
+    border-bottom: 1px solid var(--nord-border-default) !important;
+  }
+
+  /* every header button: bordered Nord chip */
+  [class*="GlobalNav"] [class*="prc-Button-ButtonBase"] {
+    background-color: var(--nord2) !important;
+    border: 1px solid var(--nord-border-default) !important;
+    color: var(--fg) !important;
+  }
+  [class*="GlobalNav"] [class*="prc-Button-ButtonBase"]:hover {
+    background-color: var(--nord3) !important;
+  }
+
+  /* search trigger: recessed field, distinct from buttons */
+  [class*="GlobalNav"] [class*="searchButton"] {
+    background-color: var(--nord0) !important;
+  }
+  [class*="GlobalNav"] [class*="searchButton"]:hover,
+  [class*="GlobalNav"] [class*="searchButton"]:focus-within {
+    background-color: var(--nord1) !important;
+    border-color: var(--accent) !important;
+  }
+  [class*="GlobalNav"] [class*="Search-module__text"] {
+    color: var(--nord-fg-muted) !important;
+  }
+  [class*="GlobalNav"] [class*="Search-module__kbd"] {
+    background-color: var(--nord2) !important;
+    border-color: var(--nord-border-default) !important;
+    color: var(--nord-fg-muted) !important;
+  }
+
+  /* avatar */
+  [class*="GlobalNav"] [class*="prc-Avatar-Avatar"] {
+    border: 1px solid var(--nord-border-default) !important;
+  }
+
+  /* breadcrumb */
+  [class*="contextCrumb"] {
+    color: var(--nord-fg-muted) !important;
+  }
+  [class*="contextCrumbLast"] {
+    color: var(--fg) !important;
+    font-weight: 600 !important;
+  }
+
+  /* local nav tabs (profile underline nav) */
+  [class*="prc-UnderlineNav"] {
+    --underlineNav-borderActiveColor: var(--accent);
+    --p-underline-nav-border-active: var(--accent);
+    --color-underlinenav-border-active: var(--accent);
+  }
+  [class*="prc-UnderlineNav-UnderlineNavItem"] [class*="prc-components-UnderlineItem"] {
+    color: var(--nord-fg-muted) !important;
+  }
+  [class*="prc-UnderlineNav-UnderlineNavItem"] [class*="prc-components-UnderlineItem"]:hover {
+    color: var(--fg) !important;
+  }
+  /* active tab: cyan underline ONLY — GitHub's orange one is drawn
+     by a border/pseudo-element mechanism, so suppress those and
+     keep just the cyan inset shadow */
+  [class*="prc-UnderlineNav-UnderlineNavItem"] {
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+  [class*="prc-UnderlineNav-UnderlineNavItem"] [class*="prc-components-UnderlineItem"][aria-current="page"],
+  [class*="prc-UnderlineNav-UnderlineNavItem"] [class*="prc-components-UnderlineItem"][aria-selected="true"] {
+    color: var(--fg) !important;
+    border-bottom: none !important;
+    box-shadow: inset 0 -2px 0 0 var(--accent) !important;
+  }
+  [class*="prc-components-UnderlineItem"][aria-current="page"]::before,
+  [class*="prc-components-UnderlineItem"][aria-current="page"]::after,
+  [class*="prc-components-UnderlineItem"][aria-selected="true"]::before,
+  [class*="prc-components-UnderlineItem"][aria-selected="true"]::after {
+    display: none !important;
+  }
+
+  /* tab counters (repos 81, stars 42, …) */
+  [class*="prc-CounterLabel-CounterLabel"] {
+    background-color: var(--nord2) !important;
+    color: var(--nord-fg-muted) !important;
+  }
+
+  /* header divider */
+  [class*="itemDivider"] {
+    border-color: var(--nord-border-muted) !important;
+  }
+
+  /* tooltips & keybinding hints inside the header */
+  [class*="GlobalNav"] [class*="prc-TooltipV2-Tooltip"] {
+    background-color: var(--nord2) !important;
+    color: var(--fg) !important;
+  }
+  [class*="GlobalNav"] [class*="prc-components-ChordOnEmphasis"] {
+    background-color: var(--nord3) !important;
+    color: var(--fg) !important;
+  }
+
+  /* --- non-primary buttons: flat Nord safety net --- */
+  .btn:not(.btn-primary):not(.btn-danger):not(.btn-outline),
+  .Button:not(.Button--primary):not(.Button--danger) {
+    background-color: var(--nord1) !important;
+    border-color: var(--nord-border-default) !important;
+    color: var(--fg) !important;
+  }
+  .btn:not(.btn-primary):not(.btn-danger):hover,
+  .Button:not(.Button--primary):not(.Button--danger):hover {
+    background-color: var(--nord2) !important;
+    color: var(--fg) !important;
+  }
+
+  /* --- footer --- */
+  [class*="footer"] {
+    color: var(--nord-fg-muted) !important;
+  }
+  [class*="footer"] a {
+    color: var(--nord-fg-muted) !important;
+  }
+  [class*="footer"] a:hover {
+    color: var(--fg) !important;
+    text-decoration: underline !important;
+  }
+  [class*="footer"] svg {
+    fill: var(--nord-fg-muted) !important;
+  }
+}

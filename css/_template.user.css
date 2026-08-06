@@ -1,0 +1,63 @@
+/* ==UserStyle==
+@name         Nord — <SITE NAME>
+@namespace    nord-storehouse
+@version      0.1.0
+@description  Nord theme for <SITE>.
+@author       raven
+@homepageURL  https://github.com/raven/nord
+@updateURL    https://raw.githubusercontent.com/raven/nord/main/css/<site>.user.css
+@var color accent "Accent (frost)" #88C0D0
+@var color bg "Background (polar night)" #2E3440
+@var color fg "Foreground (snow storm)" #D8DEE9
+==/UserStyle== */
+
+/* ============================================================
+ * Nord palette
+ * Canonical colors live in css/_nord.css; they're inlined here
+ * so this theme is self-contained and installs in one shot.
+ * ============================================================ */
+@-moz-document domain("<site-domain>") {
+  :root {
+    /* Polar Night */
+    --nord0: #2E3440;
+    --nord1: #3B4252;
+    --nord2: #434C5E;
+    --nord3: #4C566A;
+
+    /* Snow Storm */
+    --nord4: #D8DEE9;
+    --nord5: #E5E9F0;
+    --nord6: #ECEFF4;
+
+    /* Frost */
+    --nord7: #8FBCBB;
+    --nord8: #88C0D0;
+    --nord9: #81A1C1;
+    --nord10: #5E81AC;
+
+    /* Aurora */
+    --nord11: #BF616A;
+    --nord12: #D08770;
+    --nord13: #EBCB8B;
+    --nord14: #A3BE8C;
+    --nord15: #B48EAD;
+
+    /* Semantic aliases */
+    --nord-bg: var(--nord0);
+    --nord-bg-alt: var(--nord1);
+    --nord-fg: var(--nord4);
+    --nord-fg-muted: var(--nord3);
+    --nord-accent: var(--nord8);
+    --nord-border: var(--nord3);
+    --nord-success: var(--nord14);
+    --nord-warning: var(--nord13);
+    --nord-danger: var(--nord11);
+  }
+
+  /* ===== base =====
+     e.g. page background/foreground, kill the site's light theme. */
+
+  /* ===== component overrides =====
+     e.g. cards, buttons, links, code — style against --nord*,
+     or the @var knobs --accent / --bg / --fg. */
+}
