@@ -1,11 +1,11 @@
 /* ==UserStyle==
-@name         Nord — Instagram
+@name         Nord — Instagram (Aurora bubbles)
 @namespace    nord-storehouse
-@version      0.1.5
-@description  Nord theme for instagram.com — forces dark. Best with Instagram's own theme set to dark (Settings → Appearance) or OS dark.
+@version      0.1.7
+@description  Nord theme for instagram.com — forces dark; sent Direct messages get an aurora gradient bubble. Best with Instagram's own theme set to dark (Settings → Appearance) or OS dark.
 @author       raven
 @homepageURL  https://github.com/<you>/nord
-@updateURL    https://raw.githubusercontent.com/<you>/nord/main/css/instagram.user.css
+@updateURL    https://raw.githubusercontent.com/<you>/nord/main/css/instagram.user.aurora.css
 @var color accent "Accent (frost)" #88C0D0
 @var color bg "Background (polar night)" #2E3440
 @var color fg "Foreground (snow storm)" #D8DEE9
@@ -141,16 +141,25 @@
   }
 
   /* ---------- chat message bubbles ----------
-     Match by structure, not pagelet: the bubble is a
-     span[dir="auto"] wrapping a div[dir="auto"], optionally inside
-     a role="presentation" wrapper div. This holds in both the
-     floating chat widget and the full Direct page, so no ancestor
-     scoping. Both directions get a nord1 pill. */
-  div[role="presentation"]:has(> span[dir="auto"] > div[dir="auto"]),
-  span[dir="auto"]:has(> div[dir="auto"]) {
-    background-color: var(--nord1) !important;
-    color: var(--fg) !important;
-    border-radius: 16px !important;
+     SENT (client-side) messages get a toned-down Nord aurora
+     gradient. The full 5-color sweep reads as a rainbow, so this
+     uses a 3-stop warm ramp of the aurora palette instead:
+     nord11 red → nord12 orange → nord13 yellow.
+
+     Bubble shape: a span[dir="auto"] > div[dir="auto"] wrapped in
+     a role="presentation" div. Sent bubbles carry the x13sv91t
+     class on the wrapper; received messages are left as-is.
+     (Want a cooler look? Swap the stops to
+     var(--nord15) / var(--nord14) / var(--nord7) for a
+     northern-lights teal-green-purple.) */
+  div[role="presentation"]:has(> span[dir="auto"] > div[dir="auto"])[class*="x13sv91t"] {
+    background: linear-gradient(135deg, var(--nord11) 0%, var(--nord12) 50%, var(--nord13) 100%) !important;
+    color: var(--nord0) !important;
+    border-radius: 18px !important;
+  }
+  /* let the wrapper's gradient show through the inner span */
+  div[role="presentation"]:has(> span[dir="auto"] > div[dir="auto"])[class*="x13sv91t"] > span[dir="auto"] {
+    background-color: transparent !important;
   }
 
   /* ---------- post comment section ----------
