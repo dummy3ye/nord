@@ -20,18 +20,30 @@ Everything in the Nord Themepack, in one place.
 
 ## Wallpapers
 
+### 3840×2160 (4K)
+
 | File | Resolution | Format |
 |---|---|---|
 | `nord-city.jpg` | 6512×4341 | JPG |
-| `nord_lake.png` | 3840×2160 | PNG |
-| `nord_mountains.png` | 3840×2160 | PNG |
-| `nord_scenary.png` | 3840×2160 | PNG |
-| `nord_space.png` | 3180×1931 | PNG |
-| `wild.png` | 2560×1440 | PNG |
-| `street_blues.png` | 2560×1280 | PNG |
-| `utiity.png` | 1920×1200 | PNG |
-| `nord_alone_tree.png` | 1920×1080 | PNG |
-| `waves.jpg` | 1920×1080 | JPG |
+| `nord-lake.png` | 3840×2160 | PNG |
+| `nord-mountains.png` | 3840×2160 | PNG |
+| `nord-scenery.png` | 3840×2160 | PNG |
+| `nord-space.png` | 3180×1931 | PNG |
+
+### 2560×1440
+
+| File | Resolution | Format |
+|---|---|---|
+| `nord-wild.png` | 2560×1440 | PNG |
+| `nord-street-blues.png` | 2560×1280 | PNG |
+
+### 1920×1080
+
+| File | Resolution | Format |
+|---|---|---|
+| `nord-utility.png` | 1920×1200 | PNG |
+| `nord-alone-tree.png` | 1920×1080 | PNG |
+| `nord-waves.jpg` | 1920×1080 | JPG |
 
 See [`wallpapers/README.md`](../wallpapers/README.md) for naming conventions and how to add more.
 
