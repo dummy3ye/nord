@@ -1,0 +1,94 @@
+[MAIN]
+# Minimum Python version
+py-version=3.9
+
+# Use multiple processes for speed
+jobs=0
+
+# List of plugins (comma separated)
+load-plugins=
+
+# In error mode, messages with a category besides ERROR or FATAL are
+# suppressed, and no reports are done. Error mode is compatible with
+# disabling specific errors
+# error-mode=no
+
+# Always return a 0 (non-error) status code, even if lint errors are found
+# exit-zero=no
+
+# Minimum Python version for version dependent checks
+py-version=3.9
+
+[MESSAGES CONTROL]
+# Disable specific messages
+disable=
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    R0903,  # too-few-public-methods
+    R0913,  # too-many-arguments
+    R0914,  # too-many-locals
+    R0912,  # too-many-branches
+    R0915,  # too-many-statements
+    W0511,  # fixme
+    E0401,  # import-error (handled by venv)
+    R0801,  # duplicate-code
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=100
+
+# Regexp for a line that is allowed to be longer than the limit
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+
+# List of optional spaces considered to be appropriate separators
+# in tuple, list, dictionary, set arguments, function calls and dictionary
+# definitions
+single-line-class-stmt=yes
+single-line-if-stmt=no
+
+[BASIC]
+# Naming rules matching the project style
+good-names=i, j, k, v, e, f, x, y, h, w, c, r, g, b, n, _
+max-args=8
+max-locals=15
+max-returns=8
+max-branches=15
+max-statements=60
+max-attributes=10
+
+[DESIGN]
+# Arguments that should match the public name of the method
+good-names=i, j, k, v, e, f, x, y, h, w, c, r, g, b, n, _
+
+[IMPORTS]
+# Allow wildcard imports from these modules
+allow-wildcard-with-all=no
+
+[TYPECHECK]
+# List of module names for which member attributes should not be checked
+ignored-modules=numpy,numpy.*,PIL,PIL.*,cv2
+
+# List of classes names for which member attributes should not be checked
+ignored-classes=numpy,PIL
+
+[SIMILARITIES]
+# Minimum lines number of a similarity
+min-similarity-lines=6
+
+# Ignore comments when computing similarities
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities
+ignore-imports=yes
+
+# Signatures to ignore when matching similarities
+ignore-signatures=yes
+
+[SPELLING]
+# Spelling check settings (if enabled)
+spelling-private-dict-file=
+spelling-dict=
