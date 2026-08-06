@@ -1,6 +1,6 @@
-# Nord Storehouse
+# Nord Themepack
 
-A storehouse of [Nord](https://www.nordtheme.com/) themed things — wallpapers and UserCSS themes for the sites I use.
+A themepack of [Nord](https://www.nordtheme.com/) themed things — wallpapers, UserCSS themes, and nordify for the sites I use.
 
 ## UserCSS themes
 
