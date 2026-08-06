@@ -21,8 +21,10 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Multimedia :: Graphics",
     "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Multimedia :: Graphics :: Filters",
 ]
 dependencies = [
     "numpy>=1.22",
@@ -33,7 +35,9 @@ dependencies = [
 nordify = "nordify:main"
 
 [project.urls]
-Repository = "https://github.com/raven/nord"
+Repository = "https://github.com/dummy3ye/nord"
+Homepage = "https://github.com/dummy3ye/nord"
+Issues = "https://github.com/dummy3ye/nord/issues"
 
 [build-system]
 requires = ["hatchling"]
@@ -42,29 +46,20 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["."]
 
-# ── uv ──────────────────────────────────────────────────────────────────
-# uv reads pyproject.toml natively — just run:
-#   uv pip install -e .
-#   uv run nordify input.jpg output.png
-# No extra uv.toml needed.
-
-# ── ruff (linter + formatter, used alongside pylint) ─────────────────────
 [tool.ruff]
 target-version = "py39"
 line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM"]
-ignore = ["E501"]  # line length handled by formatter
+ignore = ["E501"]
 
-# ── mypy ─────────────────────────────────────────────────────────────────
 [tool.mypy]
 python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
 
-# ── pytest ───────────────────────────────────────────────────────────────
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --tb=short"
