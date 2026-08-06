@@ -24,7 +24,8 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Topic :: Multimedia :: Graphics",
     "Topic :: Multimedia :: Graphics :: Graphics Conversion",
-    "Topic :: Multimedia :: Graphics :: Filters",
+    "Topic :: Multimedia :: Graphics :: Presentation",
+    "Topic :: Multimedia :: Graphics :: Editors",
 ]
 dependencies = [
     "numpy>=1.22",
