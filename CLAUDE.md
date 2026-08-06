@@ -51,6 +51,8 @@ Themes are self-contained CSS files with `==UserStyle==` metadata headers. The `
 
 When writing a theme, use the `--nord*` custom property names from `css/_nord.css`. Semantic aliases: `--accent` (nord8), `--bg` (nord0), `--fg` (nord4).
 
+When adding or editing a theme, bump `@version` in the `==UserStyle==` header. Update the theme table in both `docs/index.md` and the root `README.md`.
+
 ## nordify architecture
 
 Key pipeline stages in `nordify()`:
@@ -67,8 +69,9 @@ Presets (`PRESETS` dict) override individual parameters. Auto-detection (`--auto
 
 ## Python packaging
 
-- Build system: hatchling
+- Build system: hatchling (flat layout `packages = ["."]`)
 - Entry point: `nordify = "nordify:main"` (registered as `nordify` CLI command after install)
 - Dependencies: `numpy>=1.22`, `Pillow>=9.0`
+- Version lives in two places: `pyproject.toml` `[project] version` and `nordify.py` `VERSION` — keep them in sync
 - Published at https://pypi.org/project/nordify/
 - Also supports conda via `environment.yml`
